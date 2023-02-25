@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Groceries Shop!</h1>
+    <hr />
+    <h3>Task Requirements:</h3>
+    <ul style="list-style: none; font-size: 20px;">
+        <li>Create a basic Groceries Shop till which can <code>scan</code> fruits and vegetables of different types, producing a numeric result/bill in the end. Assume the currency is called <code>aws</code> and there is <code>100 cloud ('c' for short)</code> in 1 aws</li>
+        <li>
+            Apart from simply adding the value of each product, the till should contain logic for the following special deals:
+            <hr />
+            <ul style="list-style: none; font-size: 20px;">
+                <li>
+                    <code>2 for 3</code> - for a given selection of items (customer buys 3 items but only pays for the value of 2 of them, the cheapest one is free). In case there are more than 3 items that are included in the <code>2 for 3</code> deal, the first 3 items are included.
+                    Example Deal ["banana", "orange", "tomato"], example items scanned ["banana", "orange", "orange", "tomato"] - the tomato is not included in the discount (the cheaper of <code>banana</code> or <code>orange</code> will be subtracted)
+                </li>
+                <hr />
+                <li><code>buy 1 get 1 half price</code> - for a given selection of items (if the customer buys a given product under such offer, they receive a 50% reduction in the price of a second item of the same type)</li>
+            </ul>
+        </li>
+        <hr />
+        <li>
+            The till should be <code>programmable</code> so that whoever runs it can define 2 inputs:
+            <ul style="list-style: none; font-size: 20px;">
+                <li>The list of items supported by the till - each item with a given "price", "name"</li>
+                <li>Once a new item is added to the till, the administrator should be able to add it to any of the 2 special deals defined above</li>
+                <li>You should be able to scan a list of items and see the end price (any special deal discounts should be subtracted)</li>
+            </ul>
+        <hr />
+        <h3>Application Guide:</h3>
+        <p>To add new Product or change existing product's price - go to the <a asp-controller="Shop" asp-action="Products"><b>Products</b></a> page.</p>
+        <p>There are two types of deals - <b>2 for 3</b> and <b>buy 1 and get 1 for half price</b>. To change their requirements - go to the <a asp-controller="Shop" asp-action="Deals"><b>Available Deals</b></a> page.</p>
+        <p>To make an <b>Order</b> - go to <a asp-controller="Shop" asp-action="Index"><b>Shop</b></a> page.</p>
+        <p>The products input will be treated <b>Case Insensitive</b></p>
+        <hr />
+        <p>In case an invalid product is added to an Order - the product will be excluded from the order.</p>
+        <p>In case an all products are invalid - the Order will be considered empty.</p>
+        <p>In case an invalid product is added to a deal's requirements - the page will be refreshed and no changes will be made to the database.</p>
+        <p>In case the products in the <b>2 for 3</b> deal are not <b>Unique</b> or not exactly <b>3</b> - the page will be refreshed and no changes will be made to the database.</p>
+        <hr />
+        <h3>New Product Requirements:</h3>
+        <p>Name is required</p>
+        <p>Price value should be between 1 and 1000</p>
+        <p>In case an invalid product is added - the page will be refreshed and no changes will be made to the database.</p>
+</div>

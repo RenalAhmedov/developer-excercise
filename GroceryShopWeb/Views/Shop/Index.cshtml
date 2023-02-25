@@ -1,0 +1,52 @@
+﻿@using GroceryShopWeb.Core.ViewModels.Product
+@using GroceryShopWeb.Infrastructure.DataConstants
+@{
+    ViewData["Title"] = "Products";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model OrderViewModel
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row text-center" style="padding-top: 50px;">
+    <div class="col-lg-6 border border-success">
+        <br />
+
+        @foreach (var p in Model.Products)
+        {
+            <p>@p.Name - @p.Price aws</p>
+            <hr />
+        }
+        <form method="post">
+            
+            <div class="form-group">
+                <label>Enter the items You want to buy separated by coma</label>
+                <input asp-for="Basket" class="form-control border border-primary"/>
+            </div>
+            <hr />
+            <h4>Deals</h4>
+            <hr />
+            <div class="form-group">
+                <label asp-for="TwoForThree">2 for 3 - [@ViewData[DealConstants.TwoForThree]]</label>
+                <input asp-for="TwoForThree" type="checkbox">
+            </div>
+            <hr />
+            <div class="form-group">
+                <label asp-for="HalfPrice">Buy 1 get 1 for half price - @ViewData[DealConstants.HalfPrice]</label>
+                <input asp-for="HalfPrice" type="checkbox">
+            </div>
+            <br />
+            <div class="form-group row">
+                <input class="btn btn-success" type="submit" value="Checkout" />
+            </div>
+        </form>
+    </div>
+    <div class="col-lg-6 border border-success">
+        <h2>Example order:</h2>
+        <p>apple, banana, banana, tomato, tomato, potato, apple, banana</p>
+        <hr />
+        <h3>Allowed products</h3>
+        <p class="text-warning">@ViewData["Allowed"]</p>
+    </div>
+</div>

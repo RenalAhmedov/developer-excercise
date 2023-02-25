@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Thanks For Shopping!";
+}
+@model string[]
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+
+<div class="text-success text-center">
+    @foreach (var line in Model)
+    {
+        if(line.Contains("Invalid")){
+            <p class="text-danger" style="font-size: 30px;">@line</p>
+        }
+        else{
+            <p style="font-size: 30px;">@line</p>
+        }
+    }
+</div>

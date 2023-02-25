@@ -1,0 +1,27 @@
+﻿@using GroceryShopWeb.Core.ViewModels.Deal
+@{
+    ViewData["Title"] = "Deals";
+}
+<h1>@ViewData["Title"]</h1>
+@model IEnumerable<DealViewModel>
+
+<div class="row">
+
+    <p>Products that can be used: <span class="text-success"><b>@ViewData["Allowed"]</b></span></p>
+    @foreach (var d in Model)
+    {
+        <div class="col-lg-4">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body text-center">
+                    <h5 class="card-title">@d.Type</h5>
+                    <form method="post">
+                        <input type="hidden" name="id" value="@d.Id">
+                        <input type="text" name="arguments" value="@d.Arguments">
+                        <hr>
+                        <input class="btn btn-success" type="submit" value="Update Deal">
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
+</div>
